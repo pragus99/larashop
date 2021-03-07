@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,7 @@ Route::get('/', function () {
     return view('admin.dashboard');
 });
 
-Route::get('category', CategoryController::class);
+Route::resource('category', CategoryController::class);
 
 Auth::routes();
 
