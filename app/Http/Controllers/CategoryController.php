@@ -52,7 +52,9 @@ class CategoryController extends Controller
             'description'=>$request->description,
             'image'=>$image
         ]);
-        return redirect()->back()->with('message', 'Category created successfully');
+
+        notify()->success('Category created successfully!');
+        return redirect()->route('category.index');
     }
 
     /**

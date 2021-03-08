@@ -7,7 +7,26 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+import Swal from 'sweetalert2';
 
+function confirmDelete() {
+    event.preventDefault(); // prevent form submit
+    var form = event.target.form; // storing the form
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'You will not be able to recover this category!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, keep it'
+    }, function(isConfirm){
+        if (isConfirm) {
+          form.submit();          // submitting the form when user press yes
+        } else {
+          swal("Cancelled", "Your imaginary file is safe :)", "error");
+        }
+      });
+}
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
