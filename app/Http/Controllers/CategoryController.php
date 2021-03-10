@@ -77,7 +77,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.category.edit', [
+            'category' => Category::find($id),
+        ]);
     }
 
     /**
@@ -89,7 +91,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+        $image = $category->image;
+        if($request->hasFile('image')) {
+            $image = $request->file('image')->store('public/file');
+            Storage::delete($category->image);
+        }
+        $category->name = $request->name;
+        $category->description = $request->description;
+        $category->image = $image;
+        $category->save();
+        notify()->success('Category updated successfully');
+        return redirect()->route('category.index');
     }
 
     /**
