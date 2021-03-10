@@ -34,15 +34,16 @@
                             @foreach ($categories as $key=>$category)
                             <tr>
                                 <td><a href="#">{{ $key+1 }}</a></td>
-                                <td><img src="{{ Storage::url($category->image) }}" width="100" alt="image of category"></td>
+                                <td><img src="{{ Storage::url($category->image) }}" width="100" alt="image of category">
+                                </td>
                                 <td>{{ $category->name }}</td>
                                 <td>{{ $category->description }}</td>
                                 <td><button class="btn btn-primary">More</button></td>
-                                <td></td>
-                                    <form action="{{ route('category.destroy',[$category->id]) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button id="btndelete" type="submit" class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+                                <td>
+                                    <form action="{{ route('category.destroy',[$category->id]) }}" method="post" onsubmit="return confirmDelete()">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 </td>
                             </tr>

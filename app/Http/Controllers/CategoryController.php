@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -99,6 +100,11 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $image = $category->image;
+        $category->delete();
+        Storage::delete($image);
+        notify()->success('Category deleted successfully!');
+        return redirect()->route('category.index');
     }
 }

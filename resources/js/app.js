@@ -7,26 +7,6 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
-import Swal from 'sweetalert2';
-
-function confirmDelete() {
-    event.preventDefault(); // prevent form submit
-    var form = event.target.form; // storing the form
-    Swal.fire({
-        title: 'Are you sure?',
-        text: 'You will not be able to recover this category!',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, keep it'
-    }, function(isConfirm){
-        if (isConfirm) {
-          form.submit();          // submitting the form when user press yes
-        } else {
-          swal("Cancelled", "Your imaginary file is safe :)", "error");
-        }
-      });
-}
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -38,7 +18,7 @@ function confirmDelete() {
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -46,6 +26,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-});
+// const app = new Vue({
+//     el: '#app',
+// });
